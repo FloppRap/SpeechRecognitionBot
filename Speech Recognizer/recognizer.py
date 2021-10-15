@@ -2,8 +2,10 @@
 
 import speech_recognition as sr
 
-def init():
+def Record():
 	r = sr.Recognizer()
+
+	voiceString = ""
 
 	with sr.Microphone() as source:
 	    print("Listening...")
@@ -13,10 +15,9 @@ def init():
 	    audio = r.listen(source)	# Listening
 
 	    try:
-	        text = r.recognize_google(audio, language="es-Ar")		# Convert audio to text (online)
-	        print("You said: {}".format(text))
+	        voiceString = r.recognize_google(audio, language="es-Ar")		# Convert audio to text (online)
+	        print("You said: {}".format(voiceString))
 	    except:
 	        print("Sorry could not hear")
 
-if __name__ == "__main__":
-	init()
+	return voiceString
